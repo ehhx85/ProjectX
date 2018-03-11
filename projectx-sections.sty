@@ -1,0 +1,51 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-sections}[%
+    2018/01/21 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\newcommand{\@SectionFileDirectory}{\@DefaultFolder}%
+% ============================================================================ %
+\newcommand{\GetSectionFileDirectory}{\@SectionFileDirectory}%
+% ============================================================================ %
+\newcommand{\@ResetSectionFileDirectory}{%
+    \renewcommand{\@SectionFileDirectory}{\@DefaultFolder}%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\Xfile}{ o o o o o o m }{%
+    \@ResetSectionFileDirectory%
+    \IfStrEqCase{\@CompilerDirectoryLevel}{%
+        {1}{\@ConcatenatePath{\@SectionFileDirectory}[#1][#2][#3][#4][#5][#6]}%
+        {2}{\@ConcatenatePath{\@SectionFileDirectory}[#2][#3][#4][#5][#6]}%
+        {3}{\@ConcatenatePath{\@SectionFileDirectory}[#3][#4][#5][#6]}%
+        {4}{\@ConcatenatePath{\@SectionFileDirectory}[#4][#5][#6]}%
+        {5}{\@ConcatenatePath{\@SectionFileDirectory}[#5][#6]}%
+        {6}{\@ConcatenatePath{\@SectionFileDirectory}[#6]}%
+    }[]%
+    \subfile{\@SectionFileDirectory /#7}%
+}%
+% ============================================================================ %
+\newcommand{\@ChapterLabel}{Chapter}%
+% ============================================================================ %
+\newcommand{\Xrefchapter}[1]{%
+    \@ChapterLabel\ \ref{ch:#1}%
+}%
+% ============================================================================ %
+\newcommand{\@SectionLabel}{Section}%
+% ============================================================================ %
+\newcommand{\Xrefsection}[1]{%
+    \@SectionLabel\ \ref{sec:#1}%
+}%
+% ============================================================================ %
+\newcommand{\@AppendixLabel}{Appendix}%
+% ============================================================================ %
+\newcommand{\Xrefappendix}[1]{%
+    \@AppendixLabel\ \ref{app:#1}%
+}%
+% ============================================================================ %

@@ -1,0 +1,87 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-headings}[%
+    2018/01/21 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+\RequirePackage{projectx-figures}%
+% ============================================================================ %
+\newcommand{\@SetDirectories}[1]{%
+    \@SetCompilerDirectoryLevel{#1}%
+    \@SetCurrentDirectoryLevel{#1}%
+    \@SetMainDirectory%
+    \@SetGraphicsPath%
+}%
+% ============================================================================ %
+\newcommand{\Xmain}{%
+    \@SetDirectories{1}%
+}%
+% ============================================================================ %
+\newcommand{\Xpreface}{%
+    \@SetDirectories{2}%
+    \FloatBarrier%
+    \clearpage{\pagestyle{empty}\cleardoublepage}%
+    \thispagestyle{empty}
+    \pagenumbering{gobble}%
+}%
+% ============================================================================ %
+\newcommand{\Xchapter}{%
+    \@SetDirectories{2}%
+    \FloatBarrier%
+    \clearpage{\pagestyle{plain}\cleardoublepage}%
+}%
+% ============================================================================ %
+\newcommand{\Xtable}{%
+    \@SetDirectories{2}%
+}%
+% ============================================================================ %
+\newcommand{\Xfigure}{%
+    \@SetDirectories{2}%
+}%
+% ============================================================================ %
+\newcommand{\Xequation}{%
+    \@SetDirectories{2}
+}%
+% ============================================================================ %
+\newcommand{\Xsupplement}{%
+    \@SetDirectories{2}
+}%% ============================================================================ %
+\newcommand{\Xsection}{%
+    \@SetDirectories{3}%
+    \FloatBarrier%
+}%
+% ============================================================================ %
+\newcommand{\Xsubsection}{%
+    \@SetDirectories{4}%
+    %\FloatBarrier%
+}%
+% ============================================================================ %
+\newcommand{\Xsubsubsection}{%
+    \@SetDirectories{5}%
+}%
+% ============================================================================ %
+\pretocmd{\chapter}{%
+    \@SetDirectories{2}%
+    \FloatBarrier%
+    \clearpage{\pagestyle{plain}\cleardoublepage}%
+}{}{}%
+% ============================================================================ %
+\pretocmd{\section}{%
+    \@SetDirectories{3}%
+    \FloatBarrier%
+}{}{}%
+% ============================================================================ %
+\pretocmd{\subsection}{%
+    \@SetDirectories{4}%
+    %\FloatBarrier%
+}{}{}%
+% ============================================================================ %
+\pretocmd{\subsubsection}{%
+    \@SetDirectories{5}%
+}{}{}%
+% ============================================================================ %

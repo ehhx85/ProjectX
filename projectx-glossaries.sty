@@ -1,0 +1,71 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-glossaries}[%
+    2018/02/03 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\newcommand{\@GlossaryFolder}{glossaries}%
+% ============================================================================ %
+\newcommand{\@GlossaryDirectory}{\@DefaultFolder}%
+% ============================================================================ %
+\newcommand{\GetGlossaryDirectory}{\@GlossaryDirectory}%
+% ============================================================================ %
+\newcommand{\@ResetGlossaryDirectory}{%
+    \renewcommand{\@GlossaryDirectory}{\@DefaultFolder}%
+}% 
+% ============================================================================ %
+\newcommand{\@GlossaryFile}[1]{%
+    \@GlossaryDirectory /#1%
+}%
+% ============================================================================ %
+\newcommand{\LoadGlossaryFile}[1]{%
+    \@ResetGlossaryDirectory%
+    \@AppendToPath{\@GlossaryDirectory}{\@GlossaryFolder}%
+    %\makenoidxglossaries
+    \IfFileExists{\@GlossaryFile{#1}}%
+    {%
+        \makenoidxglossaries% only make glossaries at top level for main file
+        \input{\@GlossaryFile{#1}}}%
+    {%
+        \@PrependToPath{..}[/]{\@GlossaryDirectory}%        
+        \IfFileExists{\@GlossaryFile{#1}}%
+        {\input{\@GlossaryFile{#1}}}%
+        {%
+            \@PrependToPath{..}[/]{\@GlossaryDirectory}%        
+            \IfFileExists{\@GlossaryFile{#1}}%
+            {\input{\@GlossaryFile{#1}}}%
+            {%
+                \@PrependToPath{..}[/]{\@GlossaryDirectory}%        
+                \IfFileExists{\@GlossaryFile{#1}}%
+                {\input{\@GlossaryFile{#1}}}%
+                {%
+                    \@PrependToPath{..}[/]{\@GlossaryDirectory}%        
+                    \IfFileExists{\@GlossaryFile{#1}}%
+                    {\input{\@GlossaryFile{#1}}}%
+                    {%
+                        \@PrependToPath{..}[/]{\@GlossaryDirectory}%        
+                        \IfFileExists{\@GlossaryFile{#1}}%
+                        {\input{\@GlossaryFile{#1}}}%
+                        {}% stop searching at lowest level
+                    }%
+                }%              
+            }%
+        }%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\Xglossaryfile}{ o m }{%
+    \IfNoValueTF{#1}%
+    {%
+        \subfile{\@GlossaryDirectory /#2.tex}%
+    }{%
+        \subfile{\@GlossaryDirectory /#1/#2.tex}%
+    }%
+}%
+% ============================================================================ %

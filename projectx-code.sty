@@ -1,0 +1,100 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-code}[%
+    2018/01/21 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\newcommand{\@CodeFolder}{code}%
+% ============================================================================ %
+\newcommand{\@CodeDirectory}{\@DefaultFolder}%
+% ============================================================================ %
+\newcommand{\@ResetCodeDirectory}{%
+    \renewcommand{\@CodeDirectory}{\@DefaultFolder}%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\Xcodefile}{ o o o o o o m o }{%
+    \@ResetCodeDirectory%
+    \IfStrEqCase{\@CompilerDirectoryLevel}{%
+        {1}{\@ConcatenatePath{\@CodeDirectory}[\@CodeFolder]}%
+        {2}{\@ConcatenatePath{\@CodeDirectory}[..][\@CodeFolder]}%
+        {3}{\@ConcatenatePath{\@CodeDirectory}[..][..][\@CodeFolder]}%
+        {4}{\@ConcatenatePath{\@CodeDirectory}[..][..][..][\@CodeFolder]}%
+        {5}{\@ConcatenatePath{\@CodeDirectory}[..][..][..][..][\@CodeFolder]}%
+        {6}{\@ConcatenatePath{\@CodeDirectory}[..][..][..][..][..][\@CodeFolder]}%
+    }[]%
+    \IfNoValueTF{#1}{}{\@AppendToPath{\@CodeDirectory}[/]{#1}}%
+    \IfNoValueTF{#2}{}{\@AppendToPath{\@CodeDirectory}[/]{#2}}%
+    \IfNoValueTF{#3}{}{\@AppendToPath{\@CodeDirectory}[/]{#3}}%
+    \IfNoValueTF{#4}{}{\@AppendToPath{\@CodeDirectory}[/]{#4}}%
+    \IfNoValueTF{#5}{}{\@AppendToPath{\@CodeDirectory}[/]{#5}}%
+    \IfNoValueTF{#6}{}{\@AppendToPath{\@CodeDirectory}[/]{#6}}%
+    \IfNoValueTF{#8}{%
+        \lstinputlisting{\@CodeDirectory /#7}%
+    }{%
+        \lstinputlisting[language=#8,style=#8]{\@CodeDirectory /#7}%
+    }%
+}%
+% ============================================================================ %
+\lstloadlanguages{%
+    C,%
+    C++,%
+    HTML,%
+    Matlab,%
+    Python,%
+}%
+% ============================================================================ %
+\lstdefinestyle{C}{%
+    language={C},%
+}
+% ============================================================================ %
+\lstdefinestyle{C++}{%
+    language={C++},%
+}
+% ============================================================================ %
+\lstdefinestyle{HTML}{%
+    language={HTML},%
+}
+% ============================================================================ %
+\lstdefinestyle{Matlab}{%
+    language={Matlab},%
+    aboveskip={1.5\baselineskip},%
+    alsoletter={...},%
+    basicstyle={\fontfamily{pcr}\selectfont\footnotesize},%
+    columns={fixed},%
+    comment={[l]\%},%
+    commentstyle={\color[rgb]{.133,.545,.133}},%
+    escapechar={§},%
+    frame={single},%
+    framexleftmargin={7.5mm},%
+    keywordstyle={\color[rgb]{0,0,1}},%
+    mathescape={false},%
+    morecomment={[l]...},%
+    morecomment={[s]{\%\{}{\%\}}},%
+    morekeywords={break, case, catch, classdef, continue},%
+    morekeywords={else, elseif, end, for, function},%
+    morekeywords={global, if, otherwise, parfor, persistent},%
+    morekeywords={return,spmd,switch,try,while,...},%
+    morestring={[m]'},%
+    numbers={left},%
+    numbersep={2.5mm},% 
+    numberstyle={\tiny \color{black}},%
+    rulecolor={\color{black}},%
+    showspaces={false},%
+    showstringspaces={false},%
+    showtabs={false},%
+    stringstyle={\color[rgb]{.627,.126,.941}},%
+    tabsize={4},%
+    upquote={true},%
+    xleftmargin={7.5mm},%
+}
+% ============================================================================ %
+\lstdefinestyle{Python}{%
+    language={Python},%
+}
+% ============================================================================ %

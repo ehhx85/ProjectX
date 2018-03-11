@@ -1,0 +1,56 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-info}[%
+    2018/01/21 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\newcommand{\@InfoFolder}{info}%
+% ============================================================================ %
+\newcommand{\@InfoDirectory}{\@DefaultFolder}%
+% ============================================================================ %
+\newcommand{\GetInfoDirectory}{\@InfoDirectory}%
+% ============================================================================ %
+\newcommand{\@ResetInfoDirectory}{%
+    \renewcommand{\@InfoDirectory}{\@DefaultFolder}%
+}%
+% ============================================================================ %
+\newcommand{\LoadInfoFile}[1]{%
+    \@ResetInfoDirectory%
+    \@AppendToPath{\@InfoDirectory}{\@InfoFolder}%
+    \@AppendToPath{\@InfoDirectory}[/]{#1}%
+    \IfFileExists{\@InfoDirectory}%
+    {\input{\@InfoDirectory}}%
+    {%
+        \@PrependToPath{..}[/]{\@InfoDirectory}%        
+        \IfFileExists{\@InfoDirectory}%
+        {\input{\@InfoDirectory}}%
+        {%
+            \@PrependToPath{..}[/]{\@InfoDirectory}%        
+            \IfFileExists{\@InfoDirectory}%
+            {\input{\@InfoDirectory}}%
+            {%
+                \@PrependToPath{..}[/]{\@InfoDirectory}%        
+                \IfFileExists{\@InfoDirectory}%
+                {\input{\@InfoDirectory}}%
+                {%
+                    \@PrependToPath{..}[/]{\@InfoDirectory}%        
+                    \IfFileExists{\@InfoDirectory}%
+                    {\input{\@InfoDirectory}}%
+                    {%
+                        \@PrependToPath{..}[/]{\@InfoDirectory}%        
+                        \IfFileExists{\@InfoDirectory}%
+                        {\input{\@InfoDirectory}}%
+                        {}% stop searching at lowest level
+                    }%
+                }%              
+            }%
+        }%
+    }%
+}%
+% ============================================================================ %

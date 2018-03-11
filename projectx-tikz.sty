@@ -1,0 +1,75 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-tikz}[%
+    2018/02/27 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\usetikzlibrary{hobby}%
+\usetikzlibrary{shapes.symbols}%
+% ============================================================================ %
+\makeatletter%
+\ctikzset{lxcustom/.code args={#1, #2, #3}{%
+  \pgfkeys{/tikz/circuitikz/bipole/label/name=\parbox{1.0cm}{#3}}%
+    \ctikzsetvalof{bipole/label/unit}{}%
+    \ifpgf@circ@siunitx%
+        \pgf@circ@handleSI{#2}%
+        \ifpgf@circ@siunitx@res%
+            \edef\pgf@temp{\pgf@circ@handleSI@val}%
+            \pgfkeyslet{/tikz/circuitikz/bipole/label/name}{\pgf@temp}%
+            \edef\pgf@temp{\pgf@circ@handleSI@unit}%
+            \pgfkeyslet{/tikz/circuitikz/bipole/label/unit}{\pgf@temp}%
+        \else%
+        \fi%
+    \else%
+    \fi%
+}}%
+\makeatother%
+% ============================================================================ %
+\makeatletter%
+\ctikzset{lT/.style args={#1, #2}{ %
+    lxcustom={#1, #2, {\centering #1 \\ #2 \vspace*{1ex}}},%
+    \circuitikzbasekey/bipole/label/position=90 } %
+}%
+\makeatother%
+% ============================================================================ %
+\makeatletter%
+\ctikzset{lB/.style args={#1, #2}{ %
+    lxcustom={#1, #2, {\centering \vspace*{1ex} #1 \\ #2}},%
+    \circuitikzbasekey/bipole/label/position=-90 } %
+}%
+\makeatother%
+% ============================================================================ %
+\makeatletter%
+\ctikzset{lL/.style args={#1, #2}{ %
+    lxcustom={#1, #2, {\raggedleft #1 \\ #2}},%
+    \circuitikzbasekey/bipole/label/position=-90 } %
+}%
+\makeatother%
+% ============================================================================ %
+\makeatletter%
+\ctikzset{lR/.style args={#1, #2}{ %
+    lxcustom={#1, #2, {\raggedright #1 \\ #2}},%
+    \circuitikzbasekey/bipole/label/position=90 } %
+}%
+\makeatother%
+% ============================================================================ %
+\makeatletter%
+\ctikzset{lL*/.style args={#1, #2}{ %
+    lxcustom={#1, #2, {\raggedleft #1 \\ #2}},%
+    \circuitikzbasekey/bipole/label/position=90 } %
+}%
+\makeatother%
+% ============================================================================ %
+\makeatletter%
+\ctikzset{lR*/.style args={#1, #2}{ %
+    lxcustom={#1, #2, {\raggedright #1 \\ #2}},%
+    \circuitikzbasekey/bipole/label/position=-90 } %
+}%
+\makeatother%
+% ============================================================================ %

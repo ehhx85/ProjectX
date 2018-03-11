@@ -1,0 +1,33 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-floats}[%
+    2018/02/26 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\makeatletter%
+    \renewcommand*{\fps@figure}{htbp}%
+\makeatother%
+% ============================================================================ %
+\makeatletter%
+    \renewcommand*{\fps@table}{htb}%
+\makeatother%
+% ============================================================================ %
+\makeatletter%
+    \g@addto@macro\@floatboxreset{\centering}%
+\makeatother%
+% ============================================================================ %
+\DeclareFloatingEnvironment[%
+    fileext={los},%
+    listname={List of Supplementary Files},%
+    name={Supplement},%
+    placement={b!},%
+    within={none},%
+    chapterlistsgaps={off},%
+]{supplement}%
+% ============================================================================ %

@@ -1,0 +1,127 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-units}[%
+    2018/03/03 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\sisetup{%
+    separate-uncertainty = {true},%
+    multi-part-units = {single},%
+    group-separator = {,},%
+    list-units = {single},%
+}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\barn}{b}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+]%
+{\electricfieldmm}{\volt\per\milli\meter}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+    bracket-unit-denominator = {false},%
+]%
+{\enthalpy}{\joule\per\mol}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\grit}{grit}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+    bracket-unit-denominator = {false},%
+]%
+{\heatcapacity}{\joule\per\mol\per\kelvin}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\inch}{in}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\linepairs}{{lp}\per\milli\meter}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\mil}{mil}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+    bracket-unit-denominator = {false},%
+]%
+{\mobility}{\centi\meter\squared\per\volt\per\second}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+    bracket-unit-denominator = {false},%
+]%
+{\mobilitylifetime}{\centi\meter\squared\per\volt}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\neutron}{n}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+    bracket-unit-denominator = {true},%
+]%
+{\neutronflux}{\neutron\per\centi\meter\squared\per\second}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\nines}{N}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\ohmcm}{\ohm\textrm{-}\centi\meter}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\ounce}{oz}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\rpm}{RPM}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+    bracket-unit-denominator = {false},%
+]%
+{\thermalconductivity}{\watt\per\meter\per\kelvin}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\torr}{torr}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\voltac}{\volt AC}%
+% ============================================================================ %

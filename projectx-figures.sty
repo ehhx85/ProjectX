@@ -1,0 +1,49 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-figures}[%
+    2018/01/21 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\newcommand{\@FigureFolder}{figures}%
+% ============================================================================ %
+\newcommand{\@FigureDirectory}{\@DefaultFolder}%
+% ============================================================================ %
+\newcommand{\GetFigureDirectory}{\@FigureDirectory}%
+% ============================================================================ %
+\newcommand{\@ResetFigureDirectory}{%
+    \renewcommand{\@FigureDirectory}{\@DefaultFolder}%
+}%
+% ============================================================================ %
+\newcommand{\Xfigurefile}[1]{%
+    \@ResetFigureDirectory%
+    \@LoadGraphicFile{\@FigureDirectory}{\@FigureFolder}{#1}%
+}%
+% ============================================================================ %
+\newcommand{\@SetGraphicsPath}{%
+    \graphicspath{{\@MainDirectory\@FigureFolder /}}%
+}%
+% ============================================================================ %
+\newcommand{\@FigureLabel}{Figure}%
+% ============================================================================ %
+\newcommand{\Xreffigure}[1]{%
+    \@FigureLabel\ \ref{fig:#1}%
+}%
+% ============================================================================ %
+\newcommand{\Xreffigures}[2]{%
+    \@FigureLabel s\ \ref{fig:#1} and \ref{fig:#2}%
+}%
+% ============================================================================ %
+\newcommand{\Xreffigurerange}[2]{%
+    \@FigureLabel s\ \ref{fig:#1}\ -\ \ref{fig:#2}%
+}%
+% ============================================================================ %
+\newcommand{\Xsubreffigure}[1]{%
+    \subref{fig:#1}%
+}%
+% ============================================================================ %

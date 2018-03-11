@@ -1,0 +1,68 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-references}[%
+    2018/01/21 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\ExecuteBibliographyOptions{%
+    sorting=none,%
+    hyperref=auto,%
+    url=false,%
+    maxnames=5,%
+    minnames=3,%
+}%
+% ============================================================================ %
+\newcommand{\@ReferenceFolder}{references}%
+% ============================================================================ %
+\newcommand{\@ReferenceDirectory}{\@DefaultFolder}%
+% ============================================================================ %
+\newcommand{\GetReferenceDirectory}{\@ReferenceDirectory}%
+% ============================================================================ %
+\newcommand{\@ResetReferenceDirectory}{%
+    \renewcommand{\@ReferenceDirectory}{\@DefaultFolder}%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\LoadReferenceFile}{ m o }{%
+    \IfNoValueTF{#2}%
+    {\addbibresource{#1}}% load file from the default bibtex directories
+    {% search project references folder for bibtex files
+        \@ResetReferenceDirectory%
+        \@AppendToPath{\@ReferenceDirectory}{\@ReferenceFolder}%
+        \@AppendToPath{\@ReferenceDirectory}[/]{#1}%
+        \IfFileExists{\@ReferenceDirectory}%
+        {\addbibresource{\@ReferenceDirectory}}%
+        {%
+            \@PrependToPath{..}[/]{\@ReferenceDirectory}%        
+            \IfFileExists{\@ReferenceDirectory}%
+            {\addbibresource{\@ReferenceDirectory}}%
+            {%
+                \@PrependToPath{..}[/]{\@ReferenceDirectory}%        
+                \IfFileExists{\@ReferenceDirectory}%
+                {\addbibresource{\@ReferenceDirectory}}%
+                {%
+                    \@PrependToPath{..}[/]{\@ReferenceDirectory}%        
+                    \IfFileExists{\@ReferenceDirectory}%
+                    {\addbibresource{\@ReferenceDirectory}}%
+                    {%
+                        \@PrependToPath{..}[/]{\@ReferenceDirectory}%        
+                        \IfFileExists{\@ReferenceDirectory}%
+                        {\addbibresource{\@ReferenceDirectory}}%
+                        {%
+                            \@PrependToPath{..}[/]{\@ReferenceDirectory}%        
+                            \IfFileExists{\@ReferenceDirectory}%
+                            {\addbibresource{\@ReferenceDirectory}}%
+                            {}% stop searching at lowest level
+                        }%
+                    }%              
+                }%
+            }%
+        }%
+    }%
+}%
+% ============================================================================ %

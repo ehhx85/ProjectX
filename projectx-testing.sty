@@ -1,0 +1,61 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-testing}[%
+    2018/01/21 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+\RequirePackage{projectx-equations}%
+\RequirePackage{projectx-figures}%
+\RequirePackage{projectx-glossaries}%
+\RequirePackage{projectx-references}%
+\RequirePackage{projectx-sections}%
+\RequirePackage{projectx-tables}%
+% ============================================================================ %
+\newcommand{\SectionTest}{%
+    \hrule%
+    \vspace{1em}%
+    \noindent Begin section test...%
+    \@TestingGeneral%
+    \@TestingGlossaries%
+    \@TestingReferences%
+    \@TestingGraphics%
+    \noindent ... end section test.%
+}%
+% ============================================================================ %
+\newcommand{\@TestingGeneral}{%
+    \begin{center}%
+        Compiler directory level is: [\GetCompilerDirectoryLevel]\\%
+        Current directory level is: [\GetCurrentDirectoryLevel]\\%
+        Main directory path is: [\GetMainDirectory]\\%
+        Section directory path is: [\GetSectionFileDirectory]%
+    \end{center}%    
+    \lipsum[1]%
+}%
+% ============================================================================ %
+\newcommand{\@TestingGraphics}{%
+    \Xfigurefile{default.tex}%
+    \begin{center}%
+        Table directory path is: [\GetTableDirectory]\\%
+        Figure directory path is: [\GetFigureDirectory]%    
+    \end{center}%
+}%
+% ============================================================================ %
+\newcommand{\@TestingGlossaries}{%
+    \begin{center}%
+        Something about \gls{latex}\\%
+        Glossary directory path is: [\GetGlossaryDirectory]%
+    \end{center}%
+}%
+% ============================================================================ %
+\newcommand{\@TestingReferences}{%
+    \begin{center}%
+        The primary guide was used \cite{latex_local}\\%
+        Reference directory path is: [\GetReferenceDirectory]%
+    \end{center}%
+}%
+% ============================================================================ %

@@ -1,0 +1,33 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-tables}[%
+    2018/01/21 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\newcommand{\@TableFolder}{tables}%
+% ============================================================================ %
+\newcommand{\@TableDirectory}{\@DefaultFolder}%
+% ============================================================================ %
+\newcommand{\GetTableDirectory}{\@TableDirectory}%
+% ============================================================================ %
+\newcommand{\@ResetTableDirectory}{%
+    \renewcommand{\@TableDirectory}{\@DefaultFolder}%
+}%
+% ============================================================================ %
+\newcommand{\Xtablefile}[1]{%
+    \@ResetTableDirectory%
+    \@LoadGraphicFile{\@TableDirectory}{\@TableFolder}{#1}%
+}%
+% ============================================================================ %
+\newcommand{\@TableLabel}{Table}%
+% ============================================================================ %
+\newcommand{\Xreftable}[1]{%
+    \@TableLabel\ \ref{tbl:#1}%
+}%
+% ============================================================================ %

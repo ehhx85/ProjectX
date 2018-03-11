@@ -1,0 +1,81 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-basic}[%
+    2018/01/21 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-packages}%
+% ============================================================================ %
+\newcommand{\@DefaultFolder}{}%
+% ============================================================================ %
+\newcommand{\@RootDirectoryLevel}{0}%
+% ============================================================================ %
+\newcommand{\@CompilerDirectoryLevel}{0}%
+% ============================================================================ %
+\newcommand{\@CurrentDirectoryLevel}{0}%
+% ============================================================================ %
+\newcommand{\@MainDirectory}{}%
+% ============================================================================ %
+\newcommand{\GetCompilerDirectoryLevel}{\@CompilerDirectoryLevel}%
+% ============================================================================ %
+\newcommand{\GetCurrentDirectoryLevel}{\@CurrentDirectoryLevel}%
+% ============================================================================ %
+\newcommand{\GetMainDirectory}{\@MainDirectory}%
+% ============================================================================ %
+\newcommand{\@SetCompilerDirectoryLevel}[1]{%
+    \ifx\@CompilerDirectoryLevel\@RootDirectoryLevel%
+        \renewcommand{\@CompilerDirectoryLevel}{#1}%
+        \typeout{Projectx: initialized compiler directory level = #1}%
+    \else%
+    \fi%
+}%
+% ============================================================================ %
+\newcommand{\@SetCurrentDirectoryLevel}[1]{%
+    \renewcommand{\@CurrentDirectoryLevel}{#1}%
+}%
+% ============================================================================ %
+% !!! Warning !!! - This function may not be used, consider ommitting
+\newcommand{\@SetMainDirectory}{%
+    \IfStrEqCase{\@CompilerDirectoryLevel}{%
+        {1}{\renewcommand{\@MainDirectory}{}}%
+        {2}{\renewcommand{\@MainDirectory}{../}}%
+        {3}{\renewcommand{\@MainDirectory}{../../}}%
+        {4}{\renewcommand{\@MainDirectory}{../../../}}%
+        {5}{\renewcommand{\@MainDirectory}{../../../../}}%
+        {6}{\renewcommand{\@MainDirectory}{../../../../../}}%
+    }[\PackageWarning{projectx-basic}{Compiler directory was not set.}]%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\@PrependToPath}{ m O{} m }{%
+    \xdef #3{#1#2#3}%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\@AppendToPath}{ m O{} m }{%
+    \xdef #1{#1#2#3}%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\@ConcatenatePath}{ m o o o o o o }{%
+    \IfNoValueF{#2}{\@AppendToPath{#1}{#2}}% do not use '/' for empty start
+    \IfNoValueF{#3}{\@AppendToPath{#1}[/]{#3}}%
+    \IfNoValueF{#4}{\@AppendToPath{#1}[/]{#4}}%
+    \IfNoValueF{#5}{\@AppendToPath{#1}[/]{#5}}%
+    \IfNoValueF{#6}{\@AppendToPath{#1}[/]{#6}}%
+    \IfNoValueF{#7}{\@AppendToPath{#1}[/]{#7}}%
+}%
+% ============================================================================ %
+\newcommand{\@LoadGraphicFile}[3]{%
+    \IfStrEqCase{\@CompilerDirectoryLevel}{%
+        {1}{\@ConcatenatePath{#1}[#2]}%
+        {2}{\@ConcatenatePath{#1}[..][#2]}%
+        {3}{\@ConcatenatePath{#1}[..][..][#2]}%
+        {4}{\@ConcatenatePath{#1}[..][..][..][#2]}%
+        {5}{\@ConcatenatePath{#1}[..][..][..][..][#2]}%
+        {6}{\@ConcatenatePath{#1}[..][..][..][..][..][#2]}%
+    }[]%
+    \subfile{#1/#3.tex}%
+}%
+% ============================================================================ %

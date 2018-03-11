@@ -1,0 +1,41 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-supplements}[%
+    2018/02/24 - %
+    Large Document Project Tools and Directory Builder %
+    v1.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\newcommand{\@SupplementFolder}{supplements}%
+% ============================================================================ %
+\newcommand{\@SupplementDirectory}{\@DefaultFolder}%
+% ============================================================================ %
+\newcommand{\GetSupplementDirectory}{\@SupplementDirectory}%
+% ============================================================================ %
+\newcommand{\@ResetSupplementDirectory}{%
+    \renewcommand{\@SupplementDirectory}{\@DefaultFolder}%
+}%
+% ============================================================================ %
+\newcommand{\Xsupplementfile}[1]{%
+    \@ResetSupplementDirectory%
+    \@LoadGraphicFile{\@SupplementDirectory}{\@SupplementFolder}{#1}%
+}%
+% ============================================================================ %
+\newcommand{\@SupplementLabel}{File S}%
+% ============================================================================ %
+\newcommand{\Xrefsupplement}[1]{%
+    \@SupplementLabel\ref{sup:#1}%
+}%
+% ============================================================================ %
+\newcommand{\Xrefsupplements}[2]{%
+    \@SupplementLabel s\ \ref{sup:#1} and \ref{sup:#2}%
+}%
+% ============================================================================ %
+\newcommand{\supplementcaption}[2]{%
+    \caption[#1]{``#1"\ #2.\ (\textit{available online})}%    
+}%
+% ============================================================================ %
