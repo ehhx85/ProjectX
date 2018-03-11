@@ -39,6 +39,5 @@
 *.synctex.gz(busy)
 *.pdfsync
 
-
 ## TeX Maker Files and Directories
-**/build 
+**/build
