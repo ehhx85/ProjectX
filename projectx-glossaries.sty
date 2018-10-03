@@ -69,3 +69,638 @@
     }%
 }%
 % ============================================================================ %
+\newglossary[glgX]{mainX}{glsX}{gloX}{Glossary}%
+% ============================================================================ %
+\newglossary[glgXacronym]{acronymX}{glsXacronym}{gloXacronym}{List of Acronyms}%
+% ============================================================================ %
+\newglossary[glgXterm]{termX}{glsXterm}{gloXterm}{List of Terms}%
+% ============================================================================ %
+\glsaddkey{altname}{}{\glsentryaltname}{\Glsentryaltname}{\glsaltname}{\Glsaltname}{\GLSaltname}%
+% ============================================================================ %
+\glsaddkey{plname}{}{\glsentryplname}{\Glsentryplname}{\glsplname}{\Glsplname}{\GLSplname}%
+% ============================================================================ %
+\glsaddkey{chemical}{}{\glsentrychemical}{\Glsentrychemical}{\glschemical}{\Glschemical}{\GLSchemical}%
+% ============================================================================ %
+%\glsnoexpandfields% prevent expansion of all fields to work with \Gls and \GLS
+\glssetexpandfield{name}% prevent expansion of all fields to work with \Gls and \GLS
+% ============================================================================ %
+% Glossary Entries Example
+% \newglossaryentry{#1}{%
+%       type : glossary type
+%       parent : label of parent entry
+%       name : how entry appears in glossary, may default to parent name if provided
+%       text : how entry appears in document using \gls
+%       long : the expanded version of 'text' \gls
+%       first : how entry appears first time using \gls
+%       firstplural : how entry appears first time using \glspl
+%       plural : how entry appears using \glspl
+%       description : how entry is described in glossary, may omitt using \nopostdesc
+%       descriptionplural : the plural form of description if required
+%       symbol : special symbolic entry field, defaults to \relax
+%       symbolplural : plural of special symbolic entry field
+%       sort : used to sort glossary and should only contain plain text
+%       see : cross-reference for another glossary entry
+% }%
+% ============================================================================ %
+\newcommand{\TestGlossaryX}[1]{%
+    \def\tmpRule{\rule[1.0ex]{\textwidth}{0.4pt}\\}%
+    \newpage\noindent%
+    \tmpRule%
+    \centerline{GlossaryX Testing}\\%
+    \tmpRule%
+    \textit{label} : #1\\\glsreset{#1}%
+    \tmpRule%
+    \textit{gls} : \gls{#1}\\\textit{gls} : \gls{#1}\\\glsreset{#1}%
+    \textit{Gls} : \Gls{#1}\\\textit{Gls} : \Gls{#1}\\\glsreset{#1}%
+    \textit{GLS} : \GLS{#1}\\\textit{GLS} : \GLS{#1}\\\glsreset{#1}%
+    \tmpRule%
+    \textit{glspl} : \glspl{#1}\\\textit{glspl} : \glspl{#1}\\\glsreset{#1}%
+    \textit{Glspl} : \Glspl{#1}\\\textit{Glspl} : \Glspl{#1}\\\glsreset{#1}%
+    \textit{GLSpl} : \GLSpl{#1}\\\textit{GLSpl} : \GLSpl{#1}\\\glsreset{#1}%
+    \tmpRule%
+    \textit{glsname} : \glsname{#1}\\\glsreset{#1}%
+    \textit{Glsname} : \Glsname{#1}\\\glsreset{#1}%
+    \textit{GLSname} : \GLSname{#1}\\\glsreset{#1}%
+    \tmpRule%
+    \textit{glsaltname} : \glsaltname{#1}\\\glsreset{#1}%
+    \textit{Glsaltname} : \Glsaltname{#1}\\\glsreset{#1}%
+    \textit{GLSaltname} : \GLSaltname{#1}\\\glsreset{#1}%
+    \tmpRule%
+    \textit{glstext} : \glstext{#1}\\\glsreset{#1}%
+    \textit{Glstext} : \Glstext{#1}\\\glsreset{#1}%
+    \textit{GLStext} : \GLStext{#1}\\\glsreset{#1}%
+    \tmpRule%    
+    \textit{glsfirst} : \glsfirst{#1}\\\glsreset{#1}%
+    \textit{Glsfirst} : \Glsfirst{#1}\\\glsreset{#1}%
+    \textit{GLSfirst} : \GLSfirst{#1}\\\glsreset{#1}%
+    \tmpRule%  
+    \textit{glsplural} : \glsplural{#1}\\\glsreset{#1}%
+    \textit{Glsplural} : \Glsplural{#1}\\\glsreset{#1}%
+    \textit{GLSplural} : \GLSplural{#1}\\\glsreset{#1}%
+    \tmpRule%    
+    \textit{glsfirstplural} : \glsfirstplural{#1}\\\glsreset{#1}%
+    \textit{Glsfirstplural} : \Glsfirstplural{#1}\\\glsreset{#1}%
+    \textit{GLSfirstplural} : \GLSfirstplural{#1}\\\glsreset{#1}%
+    \tmpRule%
+    \textit{glsdisp} : \glsdisp{#1}\\\glsreset{#1}%
+    \tmpRule%
+    \textit{glssymbol} : \glssymbol{#1}\\\glsreset{#1}%
+    \tmpRule%
+    \textit{glschemical} : \glschemical{#1}\\\glsreset{#1}%
+    \tmpRule%
+    \textit{glsdesc} : \glsdesc{#1}\\\glsreset{#1}%
+    %\textit{Glsdesc} : \Glsdesc{#1}\\\glsreset{#1}%
+    \tmpRule%
+}%
+% ============================================================================ %
+\newcommand{\DefineGlossaryXDefaults}{%    
+    % ======================================================================== %
+    \newglsXterm%
+        {default:main}
+        [default]%
+        {terminology default}%
+        [terminologies default]%
+        {the default main glossary term in ProjectX glossaries}%
+    % ======================================================================== %
+    \newglsXterm%
+        {default:main:alt}%   
+        {terminology default}%
+        {the default main glossary term in ProjectX glossaries without options}%
+    % ======================================================================== %
+    \newglsXacronym%
+        {default:acronym}%
+        {{}$^1$DAT}%
+        [DAT]%
+        {default acronym for testing}%
+        [default acronyms for testing]%    
+        {the default acronym for ProjectX glossaries}%
+        [0]%
+    % ======================================================================== %
+    \newglsXacronym%
+        {default:acronym:alt}%
+        {DA}%
+        {default acronym}%
+    % ======================================================================== %
+    \newglsXchemical%
+        {default:chemical}%
+        [$^X$Chem]%
+        [x chem]%
+        {default chemical X}%
+        [DefX]%
+        {\ce{De1C2X3}}%
+        [default chemical x]%
+        {the default chemical for ProjectX glossaries}%
+    % ======================================================================== %
+    \newglsXchemical%
+        {default:chemical:alt}%
+        %[$^Y$Chem]%
+        {default chemical Y}%
+        [special chem Y]%
+        {\ce{De1C2Y3}}%
+        [default chemical y]%
+        {the other default chemical for ProjectX glossaries}%
+        [default:chemical]
+    % ======================================================================== %
+    \newglsXgovernment%
+        {default:government}%
+        {DGA}%
+        {default Governmental Agency}%
+        {the default government term for ProjectX glossaries}%
+        [U.S.]%
+    % ======================================================================== %
+    \newglsXcompany%
+        {default:company}%
+        [DC]%
+        [0]%
+        {default Company\textsuperscript{\textregistered}, Inc.}%
+        [default Company]%
+        {the default company term for ProjectX glossaries}%
+        [City, State]%
+    % ======================================================================== %
+    \newglsXcompany%
+        {default:company:alt}%
+        [DCo.]%
+        {default Corporation\textsuperscript{\texttrademark}, Inc.}%
+        {the other default company term for ProjectX glossaries}% 
+    % ======================================================================== %
+    \newglsXinstitution%
+        {default:institution}%
+        [DI]%
+        [0]%
+        {The Default Institution of State}%
+        [D Inst]%
+        {description}%
+        {default institution}%
+        [City, State]%
+    % ======================================================================== %
+    \newglsXsoftware%
+        {default:software}%
+        [MATLAB]%
+        [MATrix LABoratory]%
+        [0]%
+        {MATLAB\textsuperscript{\texttrademark}}%
+        [Matlab]%
+        {the default software term for ProjectX glossaries}%
+        {matlab}%
+        [default:company]%
+    % ======================================================================== %
+    \newglsXequipment%
+        {default:equipment}%
+        {AB{\--}1 Default Instrument}%
+        [AB{\--}1DI]%
+        {A \Update{equipment}}%
+        {0}%
+        [default:company]%
+    % ======================================================================== %
+    \newglsXreaction%
+        {default:reaction}%
+        [{}$\alpha(\beta,\gamma)\delta$]%
+        [abcd]%
+        {alpha{\--}0 beta reaction}%
+        %[ABCD]%
+        {{}$^0\alpha(^1\beta,^2\gamma)^3\delta$}%
+        [alphabetagammadelta]%
+        {the default reaction for ProjectX glossaries}%        
+    % ======================================================================== %        
+}%
+% ============================================================================ %
+\newcommand{\TestGlossaryXDefaults}{%    
+    \TestGlossaryX{default:main}%
+    \TestGlossaryX{default:main:alt}%
+    \TestGlossaryX{default:acronym}%
+    \TestGlossaryX{default:acronym:alt}%
+    \TestGlossaryX{default:chemical}%
+    \TestGlossaryX{default:chemical:alt}%
+    \TestGlossaryX{default:government}%
+    \TestGlossaryX{default:government}%
+    \TestGlossaryX{default:company}%
+    \TestGlossaryX{default:company:alt}%
+    \TestGlossaryX{default:institution}%
+    \TestGlossaryX{default:software}%
+    \TestGlossaryX{default:software}%
+    \TestGlossaryX{default:equipment}%
+    \TestGlossaryX{default:reaction}%
+}%
+% ============================================================================ %
+\newcommand{\@acronymXname}[1]{%
+    (#1)% edit to change acronym term appearance
+}%
+% ============================================================================ %
+\newrobustcmd{\@AddToGlsX}{%
+    \ifglsused{\glslabel}{}{%
+        \ifglsentryexists{main:\glslabel}{%
+            \ifglsused{main:\glslabel}{}{%
+                \glsadd{main:\glslabel}%
+            }%
+        }{}%
+        \ifglsentryexists{acronym:\glslabel}{\glsadd{acronym:\glslabel}}{}%
+        \ifglsentryexists{main:\glslabel}{%
+            \ifglsused{main:\glslabel}{}{%
+                \glsadd{main:\glslabel}%
+            }%
+        }{}%
+    }%
+}%
+% ============================================================================ %
+\newcommand{\@SeeListX}{}%
+% ============================================================================ %
+\newcommand{\@AppendTo@SeeListX}[1]{%
+    \xdef\@SeeListX{\@SeeListX{#1}}%
+}%
+% ============================================================================ %
+\newcommand{\@AddTo@SeeListX}[1]{%
+    \@AppendTo@SeeListX{%
+        \ifglsentryexists{#1}{%
+            \if\relax\@SeeListX\relax{\ }\else{,\ }\fi%
+            \glsname{#1}%
+        }{}%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\@Build@SeeListX}{ >{\SplitList{ ; }} m }{%
+    \renewcommand{\@SeeListX}{}%
+    \ProcessList{#1}{\@AddTo@SeeListX}%
+    \@SeeListX%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXbasic}{ m m O{#2\glspluralsuffix} }{%
+    %
+    % 1. {label}
+    % 2. {name}
+    % 3. [optional: plural name]
+    %
+    % === Term Style Entry =================================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        name        = {#2},%
+        plural      = {#3},%
+        first       = {#2\@AddToGlsX},%
+        firstplural = {#3\@AddToGlsX},%
+        description = {\nopostdesc},%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXterm}{ m O{#3} m O{#3\glspluralsuffix} m o }{%
+    %
+    % 1. {label}
+    % 2. [sort]
+    % 3. {name}
+    % 4. [optional: plural name]
+    % 5. {description for main glossary}
+    % 6. [optional: parent]
+    %
+    % === Main Glossary Style Entry ========================================== %
+    \IfNoValueTF{#6}{%
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {#3},%
+        description = {#5},%
+        sort        = {#2},%
+    }}{%
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {#3},%
+        description = {#5},%
+        sort        = {#2},%
+        parent      = {main:#6},%
+    }}%
+    % === Term Style Entry =================================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        name        = {#3},%
+        plural      = {#4},%
+        first       = {#3\@AddToGlsX},%
+        firstplural = {#4\@AddToGlsX},%
+        description = {#5},%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXacronym}{ m m O{#2} O{#2\glspluralsuffix} m O{#5\glspluralsuffix} g O{#5} g }{%
+    %
+    % 1. {label}
+    % 2. {acronym}
+    % 3. [optional: acronym sort]
+    % 4. [optional: acronym plural]
+    % 5. {name}
+    % 6. [optional: plural name]
+    % 7. {optional: description for main glossary}
+    % 8. [optional: main sort]
+    % 9. {optional: parent}
+    %
+    % === Main Glossary Style Entry ========================================== %
+    \IfNoValueF{#7}{%
+    \IfNoValueTF{#9}{%
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {#5\ (#2)},%
+        description = {#7},%
+        sort        = {#8},%
+    }}{%
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {#5\ (#2)},%
+        description = {#7},%
+        sort        = {#8},%
+        parent      = {main:#9},%
+    }%
+    }}%
+    % === Acronym Style Entry ================================================ %
+    \newglossaryentry{acronym:#1}{%
+        type        = {acronymX},%
+        name        = {\@acronymXname{#2}},%
+        description = {#5},%
+        sort        = {#3},%
+    }%
+    % === Term Style Entry =================================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        text        = {#2},%
+        name        = {#5},%
+        plural      = {#4},%
+        plname      = {#6},%
+        first       = {#5\ (#2)\@AddToGlsX},%
+        firstplural = {#6\ (#4)\@AddToGlsX},%
+        description = {#5\ (#2)},%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXchemical}{ m o O{#2} m o m O{#4} G{\nopostdesc} o }{%
+    %
+    % 1.  {label}
+    % 2.  [optional: acronym]
+    % 3.  [optional: acronym sort]
+    % 4.  {name} NOTE: all chemicals are assumed singular in usage
+    % 5.  [optional: common name] 
+    % 6.  {chemical formula}
+    % 7.  [optional: main sort]
+    % 8.  {optional: description for main glossary}
+    % 9.  [optional: 'see' reference to related chemical]
+    %    
+    % === Main Glossary Style Entry ========================================== %
+    \IfNoValueF{#8}{%    
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {\IfNoValueTF{#5}{#4}{#4\ (\textit{also}:\ #5)}\IfNoValueF{#2}{\ (#2)}},%
+        description = {[\:\textit{formula:}\ #6\:]\ #8\IfNoValueF{#9}{.\ \textit{See also:}\@Build@SeeListX{#9}}},%
+        sort        = {#7},%
+    }}%
+    % === Acronym Style Entry ================================================ %
+    \IfNoValueF{#2}{%    
+    \newglossaryentry{acronym:#1}{%
+        type        = {acronymX},%
+        name        = {\@acronymXname{#2}},%
+        description = {#4},%
+        sort        = {#3},%
+    }}%
+    % === Chemical Style Entry =============================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        text        = {\IfNoValueTF{#2}{#4}{#2}},
+        name        = {#4},
+        plural      = {\IfNoValueTF{#2}{#4}{#2}},
+        altname     = {\IfNoValueF{#5}{#5}},%
+        first       = {#4\IfNoValueF{#2}{\ (#2)}\@AddToGlsX},%
+        firstplural = {#4\IfNoValueF{#2}{\ (#2)}\@AddToGlsX},%
+        chemical    = {{}#6},%
+        description = {#4\IfNoValueF{#2}{\ (#2)}},%
+        sort        = {#4},%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXgovernment}{ m m O{#2} m m o }{%
+    %
+    % 1. {label}
+    % 2. {acronym}
+    % 3. [optional: acronym sort]
+    % 4. {name}
+    % 5. {description for main glossary}
+    % 6. [optional: government identifier]
+    %
+    % === Main Glossary Style Entry ========================================== %
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {\IfNoValueF{#6}{#6\ }#4\ (#3)},%
+        description = {#5},%
+        sort        = {#4},%
+    }%
+    % === Acronym Style Entry ================================================ %
+    \newglossaryentry{acronym:#1}{%
+        type        = {acronymX},%
+        name        = {\@acronymXname{#2}},%
+        description = {#4},%
+        sort        = {#3},%
+    }%
+    % === Term Style Entry =================================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        text        = {#2},%
+        name        = {#2},%
+        plural      = {#2},%
+        long        = {\IfNoValueF{#6}{#6\ }#4},%
+        first       = {\IfNoValueF{#6}{#6\ }#4\ (#2)\@AddToGlsX},%
+        firstplural = {\IfNoValueF{#6}{#6\ }#4\ (#2)\@AddToGlsX},%
+        description = {#4},%
+        sort        = {#4},%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXcompany}{ m o O{#2} m O{#4} G{\nopostdesc} o }{%
+    %
+    % 1. {label}
+    % 2. [optional: acronym]
+    % 3. [optional: acronym sort]
+    % 4. {name}
+    % 5. [optional: common name]
+    % 6. {optional: description for main glossary}
+    % 7. [optional: location]
+    %
+    % === Main Glossary Style Entry ========================================== %
+    \IfNoValueF{#6}{%    
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {#4\IfNoValueF{#2}{\ \@acronymXname{#2}}},%
+        description = {\IfNoValueF{#7}{\:[{\:}#7\:]\ }#6},%
+        sort        = {#5},%
+    }}%
+    % === Acronym Style Entry ================================================ %
+    \IfNoValueF{#2}{%
+    \newglossaryentry{acronym:#1}{%
+        type        = {acronymX},%
+        name        = {\@acronymXname{#2}},%
+        description = {#5},%
+        sort        = {#3},%
+    }}%
+    % === Term Style Entry =================================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        long        = {\IfNoValueTF{#5}{#4}{#5}},%
+        text        = {\IfNoValueTF{#2}{\IfNoValueTF{#5}{#4}{#5}}{#2}},%
+        plural      = {\IfNoValueTF{#2}{\IfNoValueTF{#5}{#4}{#5}}{#2}},%
+        name        = {\IfNoValueTF{#5}{#4}{#5}},%
+        first       = {\IfNoValueTF{#5}{#4}{#5}\IfNoValueF{#2}{\ (#2)}\@AddToGlsX},%
+        firstplural = {\IfNoValueTF{#5}{#4}{#5}\IfNoValueF{#2}{\ (#2)}\@AddToGlsX},%
+        description = {\IfNoValueTF{#5}{#4}{#5}\IfNoValueF{#2}{\ (#2)}},%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXinstitution}{ m o O{#2} m O{#4} G{\nopostdesc} G{#4} o }{%
+    %
+    % 1. {label}
+    % 2. [optional: acronym]
+    % 3. [optional: acronym sort]
+    % 4. {name}
+    % 5. [optional: common name]
+    % 6. {optional: description for main glossary}
+    % 7. {optional: main sort}
+    % 8. [optional: location]
+    %
+    % === Main Glossary Style Entry ========================================== %
+    \IfNoValueF{#6}{%
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {#5\IfNoValueF{#2}{\ \@acronymXname{#2}}},%  
+        description = {\IfNoValueF{#8}{\:[{\:}#8\:]\ }#6},%
+        sort        = {#7},%
+    }}%
+    % === Acronym Style Entry ================================================ %
+    \IfNoValueF{#2}{%
+    \newglossaryentry{acronym:#1}{%
+        type        = {acronymX},%
+        name        = {\@acronymXname{#2}},%
+        description = {#5},%
+        sort        = {#3},%
+    }}%
+    % === Term Style Entry =================================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        long        = {\IfNoValueTF{#2}{\IfNoValueTF{#5}{#4}{#5}}{#2}},%
+        text        = {\IfNoValueTF{#2}{\IfNoValueTF{#5}{#4}{#5}}{#2}},%
+        plural      = {\IfNoValueTF{#2}{\IfNoValueTF{#5}{#4}{#5}}{#2}},%
+        name        = {#4},%
+        first       = {#4\IfNoValueTF{#2}{\IfNoValueF{#5}{\ (#5)}}{\ (#2)}\@AddToGlsX},%
+        firstplural = {#4\IfNoValueTF{#2}{\IfNoValueF{#5}{\ (#5)}}{\ (#2)}\@AddToGlsX},%
+        description = {#4\IfNoValueTF{#2}{\IfNoValueF{#5}{\ (#5)}}{\ (#2)}},%   
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXsoftware}{ m o o O{#2} m O{#5} G{\nopostdesc} G{#5} o }{%
+    %
+    % 1. {label}
+    % 2. [optional: acronym]
+    % 3. [optional: acronym expansion]
+    % 4. [optional: acronym sort]
+    % 5. {name}
+    % 6. [optional: common name]
+    % 7. {optional: description}
+    % 8. {optional: main sort}
+    % 9. [optional: developer]
+    %
+    % === Main Glossary Style Entry ========================================== %
+    \IfNoValueF{#7}{%
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {#5},%
+        description = {\IfNoValueF{#9}{[\:\textit{Dev.}:\ \gls{#9}\:]\ }#7},%
+        sort        = {#8},%
+    }}%
+    % === Acronym Style Entry ================================================ %
+    \IfNoValueF{#3}{%
+    \newglossaryentry{acronym:#1}{%
+        type        = {acronymX},%
+        name        = {\@acronymXname{#2}},%
+        description = {#3},%
+        sort        = {#4},%
+    }}%
+    % === Term Style Entry =================================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        text        = {\IfNoValueTF{#2}{\IfNoValueTF{#6}{#5}{#6}}{#2}},%
+        plural      = {\IfNoValueTF{#2}{\IfNoValueTF{#6}{#5}{#6}}{#2}},%
+        name        = {\IfNoValueTF{#2}{\IfNoValueTF{#6}{#5}{#6}}{#2}},%
+        first       = {\IfNoValueTF{#3}{#5\IfNoValueF{#2}{\ (#2)}}{#2\ (#3)}\@AddToGlsX},%
+        firstplural = {\IfNoValueTF{#3}{#5\IfNoValueF{#2}{\ (#2)}}{#2\ (#3)}\@AddToGlsX},%
+        description = {#7},%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXequipment}{ m o O{#2} m o G{\nopostdesc} G{#4} o }{%
+    %
+    % 1. {label}
+    % 2. [optional: acronym]
+    % 3. [optional: acronym sort]
+    % 4. {long name}
+    % 5. [optional: short name]
+    % 6. {optional: description}
+    % 7. {optional: main sort}
+    % 8. [optional: manufacturer]
+    %
+    % === Main Glossary Style Entry ========================================== %
+    \IfNoValueF{#6}{%
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {#4\IfNoValueF{#2}{\ (#2)}},%
+        description = {\IfNoValueF{#8}{[\:\textit{Mfr.}:\ \gls{#8}\:]\ }#6},%
+        sort        = {#7},%
+    }}%
+    % === Acronym Style Entry ================================================ %
+    \IfNoValueF{#2}{%
+    \newglossaryentry{acronym:#1}{%
+        type        = {acronymX},%
+        name        = {\@acronymXname{#2}},%
+        description = {#4},%
+        sort        = {#3},%
+    }}%
+    % === Term Style Entry =================================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        text        = {\IfNoValueTF{#5}{#4}{#5}},%
+        plural      = {\IfNoValueTF{#5}{#4\glspluralsuffix}{#5\glspluralsuffix}},%
+        name        = {#4},%
+        first       = {#4\IfNoValueF{#5}{\ (#5)}\@AddToGlsX},%
+        firstplural = {#4\glspluralsuffix\IfNoValueF{#5}{\ (#5\glspluralsuffix)}\@AddToGlsX},%
+        description = {#4\IfNoValueF{#5}{\ (#5)}},%
+    }%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\newglsXreaction}{ m o O{#2} m o m O{#4} G{\nopostdesc}}{%
+    %
+    % 1. {label}
+    % 2. [optional: acronym]
+    % 3. [optional: acronym sort]
+    % 4. {name} NOTE: all chemicals are assumed singular in usage
+    % 5. [optional: common name] 
+    % 6. {reaction formula}
+    % 7. [optional: main sort]
+    % 8. {optional: description for main glossary}
+    %    
+    % === Main Glossary Style Entry ========================================== %
+    \IfNoValueF{#8}{%    
+    \newglossaryentry{main:#1}{%
+        type        = {mainX},%
+        name        = {\IfNoValueTF{#5}{#4}{#4\ (\textit{also}:\ #5)}},%
+        description = {[\:\textit{RX:}\ #6\:]\ #8},%
+        sort        = {#7},%
+    }}%
+    % === Acronym Style Entry ================================================ %
+    \IfNoValueF{#2}{%    
+    \newglossaryentry{acronym:#1}{%
+        type        = {acronymX},%
+        name        = {\@acronymXname{#2}},%
+        description = {#4},%
+        sort        = {#3},%
+    }}%
+    % === Chemical Style Entry =============================================== %
+    \newglossaryentry{#1}{%
+        type        = {termX},%
+        text        = {\IfNoValueTF{#2}{#4}{#2}},
+        name        = {\IfNoValueTF{#2}{#4}{#2}},
+        plural      = {\IfNoValueTF{#2}{#4}{#2}},
+        altname     = {\IfNoValueF{#5}{#5}},%
+        first       = {\IfNoValueTF{#2}{#4}{#2}\@AddToGlsX},%
+        firstplural = {\IfNoValueTF{#2}{#4}{#2}\@AddToGlsX},%
+        chemical    = {{}#6},%
+        description = {{}#8},%
+        sort        = {#4},%
+    }%
+}%
+% ============================================================================ %

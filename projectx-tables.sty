@@ -27,7 +27,17 @@
 % ============================================================================ %
 \newcommand{\@TableLabel}{Table}%
 % ============================================================================ %
-\newcommand{\Xreftable}[1]{%
-    \@TableLabel\ \ref{tbl:#1}%
+\NewDocumentCommand{\Xreftable}{ s m }{%
+    \IfBooleanT{#1}{\Xtablefile{#2}}%
+    \@TableLabel\ \ref{tbl:#2}%
+}%
+% ============================================================================ %
+\newcommand{\XTableTestPage}[1]{%
+    \glsresetall%
+    \PageXDrafting%
+    \Xtablefile{#1}\\%
+    filename: "#1"%
+    \newpage%
+    \glsresetall%
 }%
 % ============================================================================ %

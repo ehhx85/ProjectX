@@ -12,15 +12,50 @@
 % ============================================================================ %
 \sisetup{%
     separate-uncertainty = {true},%
-    multi-part-units = {single},%
-    group-separator = {,},%
-    list-units = {single},%
+    multi-part-units     = {single},%
+    group-digits         = {integer},%
+    group-separator      = {,},%
+    list-units           = {single},%
+    binary-units         = {true},%
+    product-units        = {power},%
+    group-minimum-digits = {4},%
+    per-mode             = {symbol},%
 }%
 % ============================================================================ %
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
 ]%
+{\unitdot}{\textrm{$\cdot$}}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\unitdotspaced}{{\kern 0.05em}\unitdot{\kern 0.05em}}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
 {\barn}{b}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\countrate}{cps}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\curie}{Ci}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\dollar}{{\$}}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\dollarUS}{US\dollar}%
 % ============================================================================ %
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
@@ -38,6 +73,21 @@
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
 ]%
+{\frame}{frame}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\frames}{\frame{s}}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\framespersecond}{FPS}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
 {\grit}{grit}%
 % ============================================================================ %
 \DeclareSIUnit[%
@@ -51,6 +101,18 @@
     number-unit-product = {\thinspace},%
 ]%
 {\inch}{in}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+]%
+{\lightyield}{{photons}\per\mega\electronvolt}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+]%
+{\lightyieldneutron}{{photons}\per\neutronlong}%
 % ============================================================================ %
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
@@ -83,10 +145,27 @@
 % ============================================================================ %
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
-    per-mode = {symbol},%
-    bracket-unit-denominator = {true},%
 ]%
-{\neutronflux}{\neutron\per\centi\meter\squared\per\second}%
+{\neutronlong}{neutron}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+]%
+{\neutronfluence}{\neutron\per\centi\meter\squared}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+    bracket-unit-denominator = {false},%
+]%
+{\neutronflux}{\neutron\per\centi\meter\squared\per\unitdot\per\second}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+    per-mode = {symbol},%
+]%
+{\neutronrate}{\neutron\per\second}%
 % ============================================================================ %
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
@@ -96,12 +175,52 @@
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
 ]%
-{\ohmcm}{\ohm\textrm{-}\centi\meter}%
+{\ohmcm}{\ohm\unitdot\centi\meter}%
 % ============================================================================ %
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
 ]%
 {\ounce}{oz}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\partperbillion}{ppb}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\partpermillion}{ppm}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\percentmole}{\mol\percent}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\percentvolume}{vol.\percent}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\percentweight}{wt.\percent}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\pixel}{{P}}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\pixels}{{pixels}}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\rackunit}{U}%
 % ============================================================================ %
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
@@ -116,12 +235,23 @@
 {\thermalconductivity}{\watt\per\meter\per\kelvin}%
 % ============================================================================ %
 \DeclareSIUnit[%
+    number-unit-product = {},%
+    list-units = {repeat},%
+]%
+{\thsuper}{^{th}}%
+% ============================================================================ %
+\DeclareSIUnit[%
     number-unit-product = {\thinspace},%
 ]%
-{\torr}{torr}%
+{\torr}{Torr}%
 % ============================================================================ %
 \DeclareSIUnit[%
     number-unit-product = {\thinspace},%
 ]%
 {\voltac}{\volt AC}%
+% ============================================================================ %
+\DeclareSIUnit[%
+    number-unit-product = {\thinspace},%
+]%
+{\year}{yr}%
 % ============================================================================ %

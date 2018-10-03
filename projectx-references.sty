@@ -66,3 +66,16 @@
     }%
 }%
 % ============================================================================ %
+\newcommand{\GeneratePresentationReferences}[1]{%
+    \begin{small}%
+        \linespread{1}\selectfont%
+        The following references were used in the associated project presentation \cite{#1}.\\
+        \rule[1.0ex]{\textwidth}{0.4pt}\\%
+        \renewcommand*{\bibfont}{\tiny}%
+        \printbibliography[%
+            heading={none},%
+            title={References}%
+       ]%
+    \end{small}%
+}%
+% ============================================================================ %

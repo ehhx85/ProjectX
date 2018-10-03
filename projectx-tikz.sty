@@ -10,8 +10,58 @@
 % ============================================================================ %
 \RequirePackage{projectx-basic}%
 % ============================================================================ %
+\usetikzlibrary{fadings}%
 \usetikzlibrary{hobby}%
 \usetikzlibrary{shapes.symbols}%
+% ============================================================================ %
+\newcommand{\PageXDrafting}{%
+    \begin{tikzpicture}[remember picture,overlay]%
+    % ======================================================================== %
+        \newcommand{\ColorDrafting}{black!10!white}%
+        \newcommand{\ColorAccent}{red}%
+        \newcommand{\ColorLabel}{black}%
+        % ==================================================================== %
+        \newcommand{\LineThickness}{very thin}%
+        % ==================================================================== %
+        \pgfmathsetmacro{\GridSpacingInches}{0.5}%
+        \pgfmathsetmacro{\GridSpacing}{\GridSpacingInches * 2.54}%
+        % ==================================================================== %
+        % Define edge coordinates
+        \coordinate (C) at (current page.center);%
+        \coordinate (N) at (current page.north);%
+        \coordinate (S) at (current page.south);%
+        \coordinate (E) at (current page.east);%
+        \coordinate (W) at (current page.west);%
+        % ==================================================================== %
+        % Define corner coordinates
+        \coordinate (NE) at (N -| E);%
+        \coordinate (NW) at (N -| W);%
+        \coordinate (SE) at (S -| E);%
+        \coordinate (SW) at (S -| W);%
+        % ==================================================================== %
+        % Draw reference grid        
+        \draw[step=\GridSpacing, color=\ColorDrafting, \LineThickness] (C) grid (NE);%
+        \draw[step=\GridSpacing, color=\ColorDrafting, \LineThickness] (C) grid (NW);%
+        \draw[step=\GridSpacing, color=\ColorDrafting, \LineThickness] (C) grid (SE);%
+        \draw[step=\GridSpacing, color=\ColorDrafting, \LineThickness] (C) grid (SW);%
+        % ==================================================================== %
+        % Draw page mid lines        
+        \draw[color=\ColorAccent, thin, dashed] (W) -- (E);
+        \draw[color=\ColorAccent, thin, dashed] (N) -- (S);
+        % ==================================================================== %
+        % Draw label nodes
+        \node[color=\ColorAccent] at (C) {O};
+        \node[below, color=\ColorLabel] at (N) {$TOP$};
+        \node[above, color=\ColorLabel] at (S) {$BOTTOM$};
+        \node[below, color=\ColorLabel, rotate=-90] at (E) {$RIGHT$};
+        \node[below, color=\ColorLabel, rotate=90] at (W) {$LEFT$};
+        \node[color=\ColorAccent] at (NE) {O};
+        \node[color=\ColorAccent] at (NW) {O};
+        \node[color=\ColorAccent] at (SE) {O};
+        \node[color=\ColorAccent] at (SW) {O};
+        % ======================================================================== %
+    \end{tikzpicture}%
+}%
 % ============================================================================ %
 \makeatletter%
 \ctikzset{lxcustom/.code args={#1, #2, #3}{%

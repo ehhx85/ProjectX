@@ -12,22 +12,38 @@
 % ============================================================================ %
 \definecolor{lipsum-gray}{gray}{0.90}%
 % ============================================================================ %
-\newcommand{\LipsumSection}{%
+\renewcommand{\linenumberfont}{%
+    \tiny\color{gray}%
+}%
+% ============================================================================ %
+\newcommand{\LipsumSection}[1][]{% defaults to medium length lipsum paragraph
     {%
         \color{lipsum-gray}%
-        \lipsum[3]%
+        \ifthenelse{\equal{#1}{}}{\lipsum[7]}{\lipsum[#1]}%
     }%
 }%
 % ============================================================================ %
+\newcommand{\LipsumSectionShort}{% shortest lipsum paragraph available
+    \LipsumSection[66]%
+}%
+% ============================================================================ %
+\newcommand{\LipsumSectionLong}{% longest lipsum paragraph available
+    \LipsumSection[99]%
+}%
+% ============================================================================ %
 \newcommand{\Update}[1]{%
-    {\color{red}\textsuperscript{\scriptsize{(U)}}\textbf{#1}}%
+    {\color{red}\textsuperscript{\scriptsize{(edit)}}\textbf{#1}}%
 }%
 % ============================================================================ %
 \newcommand{\Revise}[1]{%
-    {\color{blue}\textsuperscript{\scriptsize{(R)}}#1}%
+    {\color{blue}\textsuperscript{\scriptsize{(edit)}}#1}%
+}%
+% ============================================================================ %
+\newcommand{\AbstractPlainText}[1]{%
+    {\color{black}[#1]}%
 }%
 % ============================================================================ %
 \newcommand{\citehere}{%
-    [{\color{red}cite}]%
+    [{\color{red}cite!}]%
 }%
 % ============================================================================ %

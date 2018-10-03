@@ -31,3 +31,109 @@
     \@EquationLabel\ (\ref{eq:#1})%
 }%
 % ============================================================================ %
+\newcommand{\Xrefequations}[2]{%
+    \@EquationLabel\ \ref{eq:#1} and \ref{eq:#2}%
+}%
+% ============================================================================ %
+\newcommand{\Xrefequationrange}[2]{%
+    \@EquationLabel\ \ref{eq:#1}\ {\--}\ \ref{eq:#2}%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\Xmath}{ m }{%
+    $#1$%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\Xvariable}{ O{,} m O{,} }{%
+    % Usage example: text text text \Xvariable[#1]{#2}[#3] text text text
+    \unskip% remove space between last text and command
+    #1\ % insert separator and new space
+    $#2$% formatted variable in math mode
+    #3% insert separator before trailing text
+}%
+% ============================================================================ %
+%\let\oldequation\equation
+%\let\oldendequation\endequation
+%\renewenvironment{equation}
+%  {\setbox0=\vbox\bgroup\oldequation}
+%  {\oldendequation\egroup\[\hbox{[Equation \theequation\ here]}\]}
+\counterwithout{equation}{chapter}%
+% ============================================================================ %
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}$}m{#1}<{$}}%
+% ============================================================================ %
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}$}m{#1}<{$}}%
+% ============================================================================ %
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}$}m{#1}<{$}}%
+% ============================================================================ %
+\newcommand{\XEquationSpace}{\vspace*{-5.0ex}}%
+% ============================================================================ %
+\newcommand{\@QValueString}{\underline{\textrm{\ $Q${\--}value}\ }}%
+% ============================================================================ %
+\newcolumntype{A}{R{0.57in}}% left column: 0.57in
+\newcolumntype{B}{R{0.55in}}% left column: 0.55in
+\newcolumntype{D}{C{1.15in}}% left column: 1.15in
+\newcolumntype{E}{C{2.25in}}% center column: 2.25in
+\newcolumntype{F}{C{1.10in}}% right column: 1.10in
+% ============================================================================ %
+\newenvironment{Xnuclearreaction}{%
+    \par%
+    \noindent% 
+    \begin{minipage}[t]{\linewidth}%
+        \begin{equation*}%
+            \begin{array}{ D E F }%
+                &&\@QValueString%
+            \end{array}%
+        \end{equation*}%
+        \vspace*{-6.0ex}%    
+}%
+%% >>> environment text <<<
+{%
+    \end{minipage}%
+    \vspace{3.0ex}%
+    \par%
+    \noindent%
+}%
+% ============================================================================ %
+\newenvironment{Xnuclearreactionsub}{%
+    \begin{Xnuclearreaction}%
+    \begin{subequations}%
+}%
+%% >>> environment text <<<
+{%
+    \end{subequations}%
+    \vspace{-3.0ex}%
+    \end{Xnuclearreaction}%
+}%
+% ============================================================================ %
+\newenvironment{Xnucleardecay}{%
+    \par%
+    \noindent% 
+    \begin{minipage}[t]{\linewidth}%
+        \begin{equation*}%
+            \begin{array}{ C{0.60in} C{0.55in} E F }%
+                \underline{\ t_{\sfrac{1}{2}}\ }&%
+                \underline{\ B.R.\ }&%
+                &%
+                \@QValueString%
+            \end{array}%
+        \end{equation*}%
+        \vspace*{-6.0ex}%    
+}%
+%% >>> environment text <<<
+{%
+    \end{minipage}%
+    \vspace{3.0ex}%
+    \par%
+    \noindent%
+}%
+% ============================================================================ %
+\newenvironment{Xnucleardecaysub}{%
+    \begin{Xnucleardecay}%
+    \begin{subequations}%
+}%
+%% >>> environment text <<<
+{%
+    \end{subequations}%
+    \vspace*{-3.0ex}%
+    \end{Xnucleardecay}%
+}%
+% ============================================================================ %

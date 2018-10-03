@@ -9,6 +9,7 @@
 ]%
 % ============================================================================ %
 \RequirePackage{projectx-basic}%
+\RequirePackage{projectx-tikz}%
 % ============================================================================ %
 \newcommand{\@FigureFolder}{figures}%
 % ============================================================================ %
@@ -22,7 +23,7 @@
 % ============================================================================ %
 \newcommand{\Xfigurefile}[1]{%
     \@ResetFigureDirectory%
-    \@LoadGraphicFile{\@FigureDirectory}{\@FigureFolder}{#1}%
+    \ignorespaces\@LoadGraphicFile{\@FigureDirectory}{\@FigureFolder}{#1}%
 }%
 % ============================================================================ %
 \newcommand{\@SetGraphicsPath}{%
@@ -31,19 +32,45 @@
 % ============================================================================ %
 \newcommand{\@FigureLabel}{Figure}%
 % ============================================================================ %
-\newcommand{\Xreffigure}[1]{%
-    \@FigureLabel\ \ref{fig:#1}%
+\NewDocumentCommand{\@FigureLabelString}{ O{\ } m O{and} g }{%
+    \@FigureLabel{#1}%
+    \IfNoValueTF{#4}{\ref{fig:#2}}{\ref{fig:#2}\ #3\ \ref{fig:#4}}%
 }%
 % ============================================================================ %
-\newcommand{\Xreffigures}[2]{%
-    \@FigureLabel s\ \ref{fig:#1} and \ref{fig:#2}%
+\NewDocumentCommand{\@AddXfigurefile}{ m o o o o }{%
+    \IfBooleanT{#1}{%
+        \IfNoValueF{#2}{\Xfigurefile{#2}}%
+        \IfNoValueF{#3}{\Xfigurefile{#3}}%
+        \IfNoValueF{#4}{\Xfigurefile{#4}}%
+        \IfNoValueF{#5}{\Xfigurefile{#5}}%
+    }%
 }%
 % ============================================================================ %
-\newcommand{\Xreffigurerange}[2]{%
-    \@FigureLabel s\ \ref{fig:#1}\ -\ \ref{fig:#2}%
+\NewDocumentCommand{\Xreffigure}{ s m }{%
+    \@AddXfigurefile{#1}[#2]%
+    \@FigureLabelString{#2}%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\Xreffigures}{ s m m }{%
+    \@AddXfigurefile{#1}[#2][#3]%
+    \@FigureLabelString[s\ ]{#2}[and]{#3}%
+}%
+% ============================================================================ %
+\NewDocumentCommand{\Xreffigurerange}{ s m m }{%
+%    \@AddXfigurefile{#1}[#2][#3]%
+    \@FigureLabelString[s\ ]{#2}[{\--}]{#3}%
 }%
 % ============================================================================ %
 \newcommand{\Xsubreffigure}[1]{%
     \subref{fig:#1}%
+}%
+% ============================================================================ %
+\newcommand{\XFigureTestPage}[1]{%
+    \glsresetall%
+    \PageXDrafting%
+    \Xfigurefile{#1}\\%
+    filename: "#1"%
+    \newpage%
+    \glsresetall%
 }%
 % ============================================================================ %

@@ -3,7 +3,7 @@
 \ProvidesPackage{projectx-headings}[%
     2018/01/21 - %
     Large Document Project Tools and Directory Builder %
-    v2.0 - %
+    v2.1 - %
     LaTeX Custom Package %
     by Elan H. Herrera%
 ]%
@@ -25,7 +25,7 @@
 \newcommand{\Xpreface}{%
     \@SetDirectories{2}%
     \FloatBarrier%
-    \clearpage{\pagestyle{empty}\cleardoublepage}%
+    %\clearpage{\pagestyle{empty}\cleardoublepage}% used with fancy header
     \thispagestyle{empty}
     \pagenumbering{gobble}%
 }%
@@ -33,7 +33,7 @@
 \newcommand{\Xchapter}{%
     \@SetDirectories{2}%
     \FloatBarrier%
-    \clearpage{\pagestyle{plain}\cleardoublepage}%
+    %\clearpage{\pagestyle{plain}\cleardoublepage}% used with fancy header
 }%
 % ============================================================================ %
 \newcommand{\Xtable}{%
@@ -45,20 +45,19 @@
 }%
 % ============================================================================ %
 \newcommand{\Xequation}{%
-    \@SetDirectories{2}
+    \@SetDirectories{2}%
 }%
 % ============================================================================ %
 \newcommand{\Xsupplement}{%
-    \@SetDirectories{2}
+    \@SetDirectories{2}%
 }%% ============================================================================ %
 \newcommand{\Xsection}{%
     \@SetDirectories{3}%
-    \FloatBarrier%
+    %\FloatBarrier%
 }%
 % ============================================================================ %
 \newcommand{\Xsubsection}{%
     \@SetDirectories{4}%
-    %\FloatBarrier%
 }%
 % ============================================================================ %
 \newcommand{\Xsubsubsection}{%
@@ -68,17 +67,16 @@
 \pretocmd{\chapter}{%
     \@SetDirectories{2}%
     \FloatBarrier%
-    \clearpage{\pagestyle{plain}\cleardoublepage}%
+    %\clearpage{\pagestyle{plain}\cleardoublepage}% used with fancy header
 }{}{}%
 % ============================================================================ %
 \pretocmd{\section}{%
     \@SetDirectories{3}%
-    \FloatBarrier%
+    %\FloatBarrier%
 }{}{}%
 % ============================================================================ %
 \pretocmd{\subsection}{%
     \@SetDirectories{4}%
-    %\FloatBarrier%
 }{}{}%
 % ============================================================================ %
 \pretocmd{\subsubsection}{%

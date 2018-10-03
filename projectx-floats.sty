@@ -10,21 +10,35 @@
 % ============================================================================ %
 \RequirePackage{projectx-basic}%
 % ============================================================================ %
-\makeatletter%
-    \renewcommand*{\fps@figure}{htbp}%
-\makeatother%
+\renewcommand{\topfraction}{0.5}% default: {0.7}
 % ============================================================================ %
-\makeatletter%
-    \renewcommand*{\fps@table}{htb}%
-\makeatother%
+\renewcommand{\bottomfraction}{0.5}% default: {0.3}
+% ============================================================================ %
+\renewcommand{\textfraction}{0.5}% default: {0.2}
+% ============================================================================ %
+\renewcommand{\floatpagefraction}{0.5}% default: {0.2}
+% ============================================================================ %
+\setcounter{topnumber}{1}% default: {2}
+% ============================================================================ %
+\setcounter{bottomnumber}{1}% default: {1}
+% ============================================================================ %
+\setcounter{totalnumber}{1}% default: {3}
 % ============================================================================ %
 \makeatletter%
     \g@addto@macro\@floatboxreset{\centering}%
 \makeatother%
 % ============================================================================ %
+\makeatletter%
+    \renewcommand*{\fps@figure}{tbp}%
+\makeatother%
+% ============================================================================ %
+\makeatletter%
+    \renewcommand*{\fps@table}{tbp}%
+\makeatother%
+% ============================================================================ %
 \DeclareFloatingEnvironment[%
     fileext={los},%
-    listname={List of Supplementary Files},%
+    listname={List of Attachments},%
     name={Supplement},%
     placement={b!},%
     within={none},%

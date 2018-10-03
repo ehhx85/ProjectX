@@ -1,0 +1,24 @@
+% ============================================================================ %
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{projectx-layout}[%
+    2018/04/09 - %
+    Large Document Project Tools and Directory Builder %
+    v2.0 - %
+    LaTeX Custom Package %
+    by Elan H. Herrera%
+]%
+% ============================================================================ %
+\RequirePackage{projectx-basic}%
+% ============================================================================ %
+\fancypagestyle{Xlandscape}{
+	\fancyhf{} %Clears the header/footer
+	\fancyfoot{% Footer
+    \makebox[\textwidth][r]{% Right
+      \rlap{\hspace{.75cm}% Push out of margin by \footskip
+        \smash{% Remove vertical height
+          \raisebox{4.87in}{% Raise vertically
+            \rotatebox{90}{\thepage}}}}}}% Rotate counter-clockwise
+  \renewcommand{\headrulewidth}{0pt}% No header rule
+  \renewcommand{\footrulewidth}{0pt}% No footer rule
+}
+% ============================================================================ %

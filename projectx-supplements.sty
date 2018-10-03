@@ -27,15 +27,25 @@
 % ============================================================================ %
 \newcommand{\@SupplementLabel}{File S}%
 % ============================================================================ %
-\newcommand{\Xrefsupplement}[1]{%
-    \@SupplementLabel\ref{sup:#1}%
+\NewDocumentCommand{\Xrefsupplement}{ s m }{%
+    \IfBooleanT{#1}{\Xsupplementfile{#2}}%
+    \@SupplementLabel\ref{sup:#2}%
 }%
 % ============================================================================ %
 \newcommand{\Xrefsupplements}[2]{%
     \@SupplementLabel s\ \ref{sup:#1} and \ref{sup:#2}%
 }%
 % ============================================================================ %
-\newcommand{\supplementcaption}[2]{%
-    \caption[#1]{``#1"\ #2.\ (\textit{available online})}%    
+\newcommand{\supplementcaption}[3]{%
+    \caption[``#1"\ :\ #2]{``#1"\ :\ #3.\ (\textit{available online})}%    
+}%
+% ============================================================================ %
+\newcommand{\XSupplementTestPage}[1]{%
+    \glsresetall%
+    \PageXDrafting%
+    \Xsupplementfile{#1}\\%
+    filename: "#1"%
+    \newpage%
+    \glsresetall%
 }%
 % ============================================================================ %
